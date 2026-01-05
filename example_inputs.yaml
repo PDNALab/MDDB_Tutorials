@@ -1,0 +1,163 @@
+accession: A0003
+authors:
+- Imesh Ranaweera
+- Alberto Perez
+boxtype: None
+cg_selection: []
+chainnames: []
+citation: null
+collections: []
+contact: For any questions please send a mail to perez@chem.ufl.edu
+customs: []
+cv19_abs: ''
+cv19_nanobs: ''
+cv19_startconf: ''
+cv19_unit: ''
+description: Replica-exchange MELD simulation of Protein G to study its folding pathway
+  using Grappa force field.
+ensemble: NPT
+ff:
+- Grappa
+- Amber ff14SB
+forced_references: []
+framestep: 0.02855
+groups:
+- Perez Lab UF
+input_topology_filepath: raw/topology.prmtop
+interactions: []
+license: Creative Commons Attribution 4.0 International Public License
+ligands: []
+linkcense: https://creativecommons.org/licenses/by/4.0/
+links:
+- name: Navigate to FoldBind Data Set for more information.
+  url: https://github.com/PDNALab/FoldBindDataset
+mdref: 0
+mds:
+- input_structure_filepath: /orange/alberto.perezant-mddb/MDDB/3GB1/raw/structure.pdb
+  input_trajectory_filepaths:
+  - /orange/alberto.perezant-mddb/MDDB/3GB1/raw/trajectory.29.dcd
+  mdir: replica_0
+  name: Replica 0
+  temp: 300
+- mdir: replica_1
+  name: Replica 1
+  temp: 321.65
+- mdir: replica_2
+  name: Replica 2
+  temp: 344.85
+- mdir: replica_3
+  name: Replica 3
+  temp: 369.74
+- mdir: replica_4
+  name: Replica 4
+  temp: 396.42
+- mdir: replica_5
+  name: Replica 5
+  temp: 425.02
+- mdir: replica_6
+  name: Replica 6
+  temp: 455.69
+- mdir: replica_7
+  name: Replica 7
+  temp: 488.57
+- mdir: replica_8
+  name: Replica 8
+  temp: 523.82
+- mdir: replica_9
+  name: Replica 9
+  temp: 550
+- mdir: replica_10
+  name: Replica 10
+  temp: 550
+- mdir: replica_11
+  name: Replica 11
+  temp: 550
+- mdir: replica_12
+  name: Replica 12
+  temp: 550
+- mdir: replica_13
+  name: Replica 13
+  temp: 550
+- mdir: replica_14
+  name: Replica 14
+  temp: 550
+- mdir: replica_15
+  name: Replica 15
+  temp: 550
+- mdir: replica_16
+  name: Replica 16
+  temp: 550
+- mdir: replica_17
+  name: Replica 17
+  temp: 550
+- mdir: replica_18
+  name: Replica 18
+  temp: 550
+- mdir: replica_19
+  name: Replica 19
+  temp: 550
+- mdir: replica_20
+  name: Replica 20
+  temp: 550
+- mdir: replica_21
+  name: Replica 21
+  temp: 550
+- mdir: replica_22
+  name: Replica 22
+  temp: 550
+- mdir: replica_23
+  name: Replica 23
+  temp: 550
+- mdir: replica_24
+  name: Replica 24
+  temp: 550
+- mdir: replica_25
+  name: Replica 25
+  temp: 550
+- mdir: replica_26
+  name: Replica 26
+  temp: 550
+- mdir: replica_27
+  name: Replica 27
+  temp: 550
+- mdir: replica_28
+  name: Replica 28
+  temp: 550
+- mdir: replica_29
+  name: Replica 29
+  temp: 550
+- mdir: replica_00
+  name: replica 00
+- mdir: replica_01
+  name: replica 01
+- mdir: replica_02
+  name: replica 02
+- mdir: replica_03
+  name: replica 03
+- mdir: replica_04
+  name: replica 04
+- mdir: replica_05
+  name: replica 05
+- mdir: replica_06
+  name: replica 06
+- mdir: replica_07
+  name: replica 07
+- mdir: replica_08
+  name: replica 08
+- mdir: replica_09
+  name: replica 09
+method: Replica Exchange Molecular Dynamics
+multimeric: []
+name: MELD simulation for protein G (3GB1) using Grappa force field.
+orientation: null
+pbc_selection: auto
+pdb_ids:
+- 3GB1
+program: MELD
+temp: 300
+thanks: We would like to thank our funder, National Science Foundation (NSF) and HiPerGator
+  3.0 for the computational resources.
+timestep: 2
+type: trajectory
+version: 0.6.1
+wat: null
