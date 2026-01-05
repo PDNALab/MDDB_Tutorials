@@ -1,4 +1,4 @@
-# MDDB_Tutorials
+# MDDB Tutorials
 This repository contains the tutorials about MDDB.
 
 
@@ -16,8 +16,41 @@ This repository contains the tutorials about MDDB.
 
 ```bash
 /orange/alberto.perezant-mddb/MDDB/
-└── <simulation_name>/
+└── <system_name>/
     ├── raw/
     └── inputs.yaml
 ```
-2) 
+2) Run the workflow to do the analysis for trajectories provided. Please refer to [mwf run -h] (mwf_run_h.yaml) to have an idea about the options that you can have. Example slurm script to run the workflow. (This slurm refers to a system which is having 30 trajectories. So please edit as you need.)
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=MDDB
+#SBATCH --output=MDDB.out
+#SBATCH --error=MDDB.err
+#SBATCH --mail-type=BEGIN,END,FAIL
+#SBATCH --mail-user=<useid>>@gmail.com
+#SBATCH --partition=hpg-b200
+#SBATCH --nodes=1
+#SBATCH --ntasks=4
+#SBATCH --ntasks-per-node=4
+#SBATCH --gpus-per-task=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=80000mb
+#SBATCH --time=04:00:00
+#SBATCH --qos=alberto.perezant
+
+ml conda
+conda activate /orange/alberto.perezant/imesh.ranaweera/.conda/envs/mwf_env
+
+for i in $(seq -w 0 29)
+do
+  echo "Running MDDB workflow for replica_$i"
+  mwf run -e clusters energies pockets tmscore \
+    -dir <path_to_system_directory> \
+    -top <path_to_topology_file> \
+    -md replica_$i <path_to_structure.pdb_file> \
+    <path_to_raw_folder>/trajectory.$i.dcd \
+    -inp <path_to_inputs.yaml_file> -ns \
+    -fit \
+done
+```
