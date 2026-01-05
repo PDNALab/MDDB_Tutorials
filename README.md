@@ -94,5 +94,4 @@ podman run --rm --network data_network -v /pubapps/perez/mddb/data:/data:Z local
 podman run --rm --network data_network -v /pubapps/perez/mddb/data:/data:Z localhost/loader_image delete <accessionID> -y 
 ```
 
-
-
+For more information about the workflow, visit the [MDDB Workflow documentation](https://mddb-workflow.readthedocs.io/en/latest/).
