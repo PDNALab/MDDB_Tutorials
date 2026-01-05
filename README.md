@@ -77,14 +77,19 @@ rsync -avP -e 'ssh -J <userid>@hpg.rc.ufl.edu' --exclude 'raw/' <system_folder_n
 4) Uplaod the files to MDDB (To perform this step you should login to the pubperez1 machine and navigate to the directory `/pubapps/perez/mddb/data` which is having the data to be uploaded)
 
 4.1) Load the data to the florida node without publishing.
+```bash
 podman run --rm --network data_network -v /pubapps/perez/mddb/data:/data:Z localhost/loader_image load /data/<system_foder_name>
+```
 
 4.2) publish to the main node 
+```bash
 podman run --rm --network data_network -v /pubapps/perez/mddb/data:/data:Z localhost/loader_image publish <accessionID>
+```
 
 5) If you want to remove all the data for a specific accessionID use the following command (Use with caution!!)
-
+```bash
 podman run --rm --network data_network -v /pubapps/perez/mddb/data:/data:Z localhost/loader_image delete <accessionID> -y 
+```
 
 
 
