@@ -53,7 +53,7 @@ do
     -md replica_$i <path_to_structure.pdb_file> \
     <path_to_raw_folder>/trajectory.$i.dcd \
     -inp <path_to_inputs.yaml_file> -ns \
-    -fit \
+    -fit 
 done
 ```
 
