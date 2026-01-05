@@ -1,18 +1,20 @@
 # MDDB Tutorials
-This repository contains the tutorials about MDDB.
+This repository contains tutorials for MDDB.
 
 
 # Instructions for the users that are going to provide the data to be uploaded to the MDDB
 
-1) A 'raw' folder containing trajectories, parameter file, and a structure file (pdb).
+The following data must be provided to the uploaders to have your data included in the MDDB Florida Node.
 
-2) A `inputs.yaml` which contains information about the simulations.  
+1) A 'raw' folder containing the trajectories, parameter file, and a structure file (PDB).
+
+2) An `inputs.yaml` file containing simulation information.  
    A. [Template inputs.yaml](template_inputs.yaml)  
-   B. [Example inputs.yaml](example_inputs.yaml) (For a REMD which is having 30 trajectories)
+   B. [Example inputs.yaml](example_inputs.yaml) (for a REMD system with 30 trajectories)
 
-# Instructions for the users at the Perez Lab that are going to upload the data to the MDDB (Florida Node)
+# Instructions for Perez Lab users uploading data to MDDB (Florida Node)
 
-1) Navigate to `/orange/alberto.perezant-mddb/MDDB` and create a folder relevant to the simulation that is going to be uploaded, which contains the `raw` folder and `inputs.yaml` file:
+1) Navigate to `/orange/alberto.perezant-mddb/MDDB` and create a folder named after the simulation. This folder should contain the `raw` folder and `inputs.yaml` file:
 
 ```bash
 /orange/alberto.perezant-mddb/MDDB/
@@ -20,7 +22,7 @@ This repository contains the tutorials about MDDB.
     ├── raw/
     └── inputs.yaml
 ```
-2) Run the workflow to do the analysis for trajectories provided. Please refer to [mwf run -h](mwf_run_h.yaml) to have an idea about the options that you can have. Example slurm script to run the workflow. (This slurm refers to a system which is having 30 trajectories. So please edit as you need.)
+2) Run the workflow to analyze the provided trajectories. Refer to [mwf run -h](mwf_run_h.yaml) for available options or activate the conda environment `conda activate /orange/alberto.perezant/imesh.ranaweera/.conda/envs/mwf_env` and run `mwf run -h`. Example Slurm script (for a system with 30 trajectories; edit as needed):
 
 ```bash
 #!/bin/bash
@@ -55,7 +57,7 @@ do
 done
 ```
 
-After running the analysis the folder should look like this 
+After running the analysis, the folder structure should look like this:
 ```bash
 /orange/alberto.perezant-mddb/MDDB/
 └── <system_name>/
@@ -65,28 +67,29 @@ After running the analysis the folder should look like this
     └── ..
     └── replica_29
     └── topology.prmtop
+    └── mdf.screenshot.jpg
     └── <metedata>.json
 ```
 
-3) Move the files to pubperez1 machine. (Do not upload the raw folder! upload the rest) (do cd ../ before running the following commad)
+3) Transfer files to the `pubperez1` machine (do not include the raw folder). First navigate to `/orange/alberto.perezant-mddb/MDDB`, then run:
 
 ```bash
 rsync -avP -e 'ssh -J <userid>@hpg.rc.ufl.edu' --exclude 'raw/' <system_folder_name>/ perez@pubperez1:/pubapps/perez/mddb/data/<system_folder_name>/
 ```
 
-4) Uplaod the files to MDDB (To perform this step you should login to the pubperez1 machine and navigate to the directory `/pubapps/perez/mddb/data` which is having the data to be uploaded)
+4) Uplaod the files to MDDB. (Log in to the `pubperez1` machine and navigate to `/pubapps/perez/mddb/data`, which contains the data to be uploaded.)
 
-4.1) Load the data to the florida node without publishing.
+4.1) Load data to the Florida node (without publishing):
 ```bash
 podman run --rm --network data_network -v /pubapps/perez/mddb/data:/data:Z localhost/loader_image load /data/<system_foder_name>
 ```
 
-4.2) publish to the main node 
+4.2) Publish to the main node: 
 ```bash
 podman run --rm --network data_network -v /pubapps/perez/mddb/data:/data:Z localhost/loader_image publish <accessionID>
 ```
 
-5) If you want to remove all the data for a specific accessionID use the following command (Use with caution!!)
+5) Remove data for a specific accession ID (use with extreme caution!!):
 ```bash
 podman run --rm --network data_network -v /pubapps/perez/mddb/data:/data:Z localhost/loader_image delete <accessionID> -y 
 ```
