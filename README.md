@@ -20,7 +20,7 @@ This repository contains the tutorials about MDDB.
     ├── raw/
     └── inputs.yaml
 ```
-2) Run the workflow to do the analysis for trajectories provided. Please refer to [mwf run -h] (mwf_run_h.yaml) to have an idea about the options that you can have. Example slurm script to run the workflow. (This slurm refers to a system which is having 30 trajectories. So please edit as you need.)
+2) Run the workflow to do the analysis for trajectories provided. Please refer to [mwf run -h](mwf_run_h.yaml) to have an idea about the options that you can have. Example slurm script to run the workflow. (This slurm refers to a system which is having 30 trajectories. So please edit as you need.)
 
 ```bash
 #!/bin/bash
@@ -28,7 +28,7 @@ This repository contains the tutorials about MDDB.
 #SBATCH --output=MDDB.out
 #SBATCH --error=MDDB.err
 #SBATCH --mail-type=BEGIN,END,FAIL
-#SBATCH --mail-user=<useid>>@gmail.com
+#SBATCH --mail-user=<userid>>@gmail.com
 #SBATCH --partition=hpg-b200
 #SBATCH --nodes=1
 #SBATCH --ntasks=4
@@ -54,3 +54,37 @@ do
     -fit \
 done
 ```
+
+After running the analysis the folder should look like this 
+```bash
+/orange/alberto.perezant-mddb/MDDB/
+└── <system_name>/
+    ├── raw/
+    └── inputs.yaml
+    └── replica_00
+    └── ..
+    └── replica_29
+    └── topology.prmtop
+    └── <metedata>.json
+```
+
+3) Move the files to pubperez1 machine. (Do not upload the raw folder! upload the rest) (do cd ../ before running the following commad)
+
+```bash
+rsync -avP -e 'ssh -J <userid>@hpg.rc.ufl.edu' --exclude 'raw/' <system_folder_name>/ perez@pubperez1:/pubapps/perez/mddb/data/<system_folder_name>/
+```
+
+4) Uplaod the files to MDDB (To perform this step you should login to the pubperez1 machine and navigate to the directory `/pubapps/perez/mddb/data` which is having the data to be uploaded)
+
+4.1) Load the data to the florida node without publishing.
+podman run --rm --network data_network -v /pubapps/perez/mddb/data:/data:Z localhost/loader_image load /data/<system_foder_name>
+
+4.2) publish to the main node 
+podman run --rm --network data_network -v /pubapps/perez/mddb/data:/data:Z localhost/loader_image publish <accessionID>
+
+5) If you want to remove all the data for a specific accessionID use the following command (Use with caution!!)
+
+podman run --rm --network data_network -v /pubapps/perez/mddb/data:/data:Z localhost/loader_image delete <accessionID> -y 
+
+
+
