@@ -14,7 +14,7 @@ The following data must be provided to the uploaders to have your data included 
 
 # Instructions for Perez Lab users uploading data to MDDB (Florida Node)
 
-1) Navigate to `/orange/alberto.perezant-mddb/MDDB` and create a folder named after the simulation. This folder should contain the `raw` folder and `inputs.yaml` file:
+1) Navigate to `/orange/alberto.perezant-mddb/MDDB` and create a folder following <pdbid>_<program>_<forcefield>_<accession>. Use simple letters for the rest except `accession`. This folder should contain the `raw` folder and `inputs.yaml` file:
 
 ```bash
 /orange/alberto.perezant-mddb/MDDB/
