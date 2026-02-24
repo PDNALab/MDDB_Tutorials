@@ -4,13 +4,20 @@ This repository contains tutorials for MDDB.
 
 # Instructions for the users that are going to provide the data to be uploaded to the MDDB
 
-The following data must be provided to the uploaders to have your data included in the MDDB Florida Node.
+The following data must be provided for each system to the uploaders to have your data included in the MDDB Florida Node.
 
-1) A 'raw' folder containing the trajectories, parameter file, and a structure file (PDB).
+1) A 'raw' folder containing the trajectories, parameter files.
 
 2) An `inputs.yaml` file containing simulation information.  
    A. [Template inputs.yaml](template_inputs.yaml)  
    B. [Example inputs.yaml](example_inputs.yaml) (for a REMD system with 30 trajectories)
+
+The folder structure for each system should look like this and the folder name `<pdbid>_<program>_<forcefield>`. Use simple letters for folder name.
+```bash
+<pdbid>_<program>_<forcefield>/
+    ├── raw/
+    └── inputs.yaml
+```
 
 # Instructions for Perez Lab users uploading data to MDDB (Florida Node)
 
