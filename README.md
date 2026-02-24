@@ -6,7 +6,7 @@ This repository contains tutorials for MDDB.
 
 The following data must be provided for each system to the uploaders to have your data included in the MDDB Florida Node.
 
-1) A 'raw' folder containing the trajectories, parameter files.
+1) A 'raw' folder containing the trajectories, parameter file.
 
 2) An `inputs.yaml` file containing simulation information.  
    A. [Template inputs.yaml](template_inputs.yaml)  
